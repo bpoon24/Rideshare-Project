@@ -44,7 +44,7 @@ public class Car {
 
 
     //Stuff about passengers
-    public void caddpassenger(Passenger mypassenger){
+    public void caddpassenger(Passenger mypassenger){ //Don't use
         cpassengers.add(mypassenger);
     }
 
@@ -67,6 +67,12 @@ public class Car {
             }
         } else {
             cpos = cend;
+        }
+    }
+
+    public void realcaddpassenger(Passenger mypassenger){ //Also check direction -- write direction field for passengers
+        if(cpassengers.size() < 3){
+            cpassengers.add(mypassenger);
         }
     }
 }
