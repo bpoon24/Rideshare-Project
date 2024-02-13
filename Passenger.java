@@ -1,17 +1,30 @@
 public class Passenger {
-    public static int IDGen = 0;
-    public int ID;
-    public int start;
-    public int end;
+    private static int pIDGen = 0;
+    private int pID;
+    private int pstart;
+    private int pend;
 
-    public Passenger(int myStart, int myEnd){
-        ID = IDGen;
-        IDGen++;
-        start = myStart;
-        end = myEnd;
+    public Passenger(int mypstart, int mypend){
+        pID = pIDGen;
+        pIDGen++;
+        pstart = mypstart;
+        pend = mypend;
     }
 
-    public String passengerToString(){
-        return "Passenger " + ID + ": " + "Start = " + start + ", " + "End = " + end;
+    public String pToString(){
+        return "Passenger " + pID + ": " + "Start = " + pstart + ", " + "End = " + pend;
     }
+
+    public int getpID(){
+        return pID;
+    }
+
+    public int getpstart(){
+        return pstart;
+    }
+
+    public int getpend(){
+        return pend;
+    }
+
 }
