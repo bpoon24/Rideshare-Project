@@ -4,13 +4,13 @@ public class Station {
     private static int sIDGen = 0;
     private int sID;
     private ArrayList<Passenger> spassengers;  
-    private ArrayList<Car> scar;
+    private ArrayList<Car> scars;
 
     public Station(){
         sID = sIDGen;
         sIDGen++;
         spassengers = new ArrayList<Passenger>();
-        scar = new ArrayList<Car>();
+        scars = new ArrayList<Car>();
     }
 
     public String sToString(){
@@ -28,11 +28,11 @@ public class Station {
 
     //Cars
     public void saddcar(Car mycar){
-        scar.add(mycar);
+        scars.add(mycar);
     }
 
     public void sremovecar(Car mycar){
-        scar.remove(mycar);
+        scars.remove(mycar);
     }
 
 

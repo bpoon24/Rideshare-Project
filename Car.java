@@ -6,16 +6,20 @@ public class Car {
     private int cstart;
     private int cend;
     private int cpos;
-    private boolean isforward;
+    private boolean cisforward;
     private ArrayList<Passenger> cpassengers;
 
-    public Car(int mycstart, int mycend, boolean myisforward){
+    public Car(int mycstart, int mycend){
         cID = cIDGen;
         cIDGen++; 
         cstart = mycstart;
         cend = mycend;
         cpos = mycstart; //The car's initial position is it's starting position
-        isforward = myisforward;
+        if(mycstart < mycend){
+            cisforward = true;
+        } else {
+            cisforward = false;
+        }
         cpassengers = new ArrayList<Passenger>();
     }
 
@@ -23,7 +27,7 @@ public class Car {
 
     //Getters
     public String cToString(){
-        return "Car " + cID + ": " + "Start = " + cstart + ", " + "End = " + cend + ", " + "isForward = " + isforward + ", " + "Passengers = " + cpassengers;
+        return "Car " + cID + ": " + "Start = " + cstart + ", " + "End = " + cend + ", " + "isForward = " + cisforward + ", " + "Passengers = " + cpassengers;
     }
     public int getcID(){
         return cID;
@@ -37,42 +41,59 @@ public class Car {
         return cend;
     }
 
-    public int getdistance(){
+    public int getdistance(){ //May not need this?
         return Math.abs(cend - cstart);
     }
 
+    public int getcpos(){
+        return cpos;
+    }
 
+    public boolean getcisforward(){
+        return cisforward;
+    }
+
+    //Don't need a getter method for ArrayLists b/c it's permanent?
+    public ArrayList<Passenger> getcpassengers(){
+        return cpassengers;
+    }
 
     //Stuff about passengers
-    public void caddpassenger(Passenger mypassenger){ //Don't use
+    public void caddpassenger(Passenger mypassenger){//Don't need?
         cpassengers.add(mypassenger);
     }
 
-    public void cremovepassenger(Passenger mypassenger){
+    public void cremovepassenger(Passenger mypassenger){//Don't need?
         cpassengers.remove(mypassenger);
     }
 
-    public int getnumpas(){
+    public void pickup(Passenger mypassenger){
+        if((cpassengers.size() < 3) && (mypassenger.getpisforward() == cisforward)){
+            cpassengers.add(mypassenger);
+        }
+    }
+
+    public void dropoff(Passenger mypassenger){
+        if((mypassenger.getppos() == mypassenger.getpend()) || (cpos == cend)) {
+            cpassengers.remove(mypassenger);
+        }
+    }
+
+    public int getnumpas(){//Don't need?
         return cpassengers.size();
     }
 
     //Moves cars one station in right direction
     public void move(){
         if(cpos != cend){
-            if(isforward){
+            if(cisforward){
                 cpos++;
             }
-            if(!isforward){
+            if(!cisforward){
                 cpos--;
             }
         } else {
             cpos = cend;
-        }
-    }
-
-    public void realcaddpassenger(Passenger mypassenger){ //Also check direction -- write direction field for passengers
-        if(cpassengers.size() < 3){
-            cpassengers.add(mypassenger);
         }
     }
 }
