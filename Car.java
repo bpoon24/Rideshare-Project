@@ -53,9 +53,12 @@ public class Car {
         return cisforward;
     }
 
-    //Don't need a getter method for ArrayLists b/c it's permanent?
     public ArrayList<Passenger> getcpassengers(){
         return cpassengers;
+    }
+
+    public Passenger getpassenger(int index){
+        return cpassengers.get(index);
     }
 
     //Stuff about passengers
