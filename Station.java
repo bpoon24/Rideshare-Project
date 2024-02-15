@@ -26,9 +26,21 @@ public class Station {
                 if((mypassenger.getppos() == mypassenger.getpend()) || (mycar.getcpos() == mycar.getcend())) {
                     spassengers.add(mycar.getcpassengers().remove(j));
                 }
+
+                if((mycar.getcpos() == mycar.getcend())){ //Terminates cars at final destination
+                    scars.remove(i);
+                }
             }
         }
     }
+
+    public void pickup(){
+        for(int i = 0; i < spassengers.size(); i++){
+
+        }
+    }
+
+
 
     //Passengers -- very simple methods; may not need
     public void saddpassenger(Passenger mypassenger){
