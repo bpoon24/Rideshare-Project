@@ -19,15 +19,16 @@ public class Station {
 
     //Passengers -- actual methods?
     public void dropoff(){
-        for(int i = 0; i < scars.size(); i++){
-            for(int j = 0; j < scars.get(i).getnumpas(); j++){
+        for(int i = 0; i < scars.size(); i++){ //Loops through Cars in Station
+            for(int j = scars.get(i).getnumpas(); j >= 0; j--){ //Loops through Passengers in Car.  Backwards b/c removing Passengers decreases the size of the list.
                 Car mycar = scars.get(i);
                 Passenger mypassenger = mycar.getpassenger(j);
-                if((mypassenger.getppos() == mypassenger.getpend()) || (mycar.getcpos() == mycar.getcend())) {
+                if((mypassenger.getppos() == mypassenger.getpend()) || (mycar.getcpos() == mycar.getcend())){//Checks whether to drop off or not
                     spassengers.add(mycar.getcpassengers().remove(j));
+                    mycar.decreasenumpas();
                 }
 
-                if((mycar.getcpos() == mycar.getcend())){ //Terminates cars at final destination
+                if((mycar.getcpos() == mycar.getcend())){ //Terminates car if it's at final destination
                     scars.remove(i);
                 }
             }
@@ -35,11 +36,27 @@ public class Station {
     }
 
     public void pickup(){
-        for(int i = 0; i < spassengers.size(); i++){
-
+        for(int i = 0; i < scars.size(); i++){  //Loops through Cars in Station
+            for(int j = spassengers.size(); j >= 0; j--){ //Loops through Passengers in Station.  Backwards b/c removing Passengers decreases the size of the list.
+                Car mycar = scars.get(i);
+                Passenger mypassenger = spassengers.get(j);
+                if((mycar.getcpassengers().size() < 3)){ //Checks car's capacity
+                    if(mypassenger.getpisforward() == mycar.getcisforward() == true){ //Checks for forward-moving passengers
+                        if(sID < mypassenger.getpend()){
+                            mycar.caddpassenger(mypassenger);
+                            spassengers.remove(mypassenger);
+                        }
+                    }
+                    if(mypassenger.getpisforward() == mycar.getcisforward() == false){ //Checks for backward-moving passengers
+                        if(sID > mypassenger.getpend()){
+                            mycar.caddpassenger(mypassenger);
+                            spassengers.remove(mypassenger);                           
+                        }
+                    }
+                }
+             }
         }
     }
-
 
 
     //Passengers -- very simple methods; may not need
@@ -60,5 +77,6 @@ public class Station {
         scars.remove(mycar);
     }
 }
+
 
 
