@@ -7,6 +7,7 @@ public class Car {
     private int cend;
     private int cpos;
     private boolean cisforward;
+    private int numpas;
     private ArrayList<Passenger> cpassengers;
 
     public Car(int mycstart, int mycend){
@@ -15,6 +16,7 @@ public class Car {
         cstart = mycstart;
         cend = mycend;
         cpos = mycstart; //The car's initial position is it's starting position
+        numpas = 0;
         if(mycstart < mycend){
             cisforward = true;
         } else {
@@ -82,8 +84,14 @@ public class Car {
         }
     }
 
-    public int getnumpas(){//Don't need?
-        return cpassengers.size();
+    public int getnumpas(){
+        numpas = cpassengers.size();
+        return numpas;
+    }
+
+    public int decreasenumpas(){
+        numpas--;
+        return numpas;
     }
 
     //Moves cars one station in right direction
