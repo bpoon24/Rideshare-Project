@@ -45,7 +45,8 @@ public class RoadTester {
             myRoad.dropoffallpassengers();
             myRoad.pickupallpassengers();
 
-            
+            myRoad.printstationinfo();
+
             /*
             System.out.println(s1.sToString());
             System.out.println(s2.sToString());

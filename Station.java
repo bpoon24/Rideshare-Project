@@ -18,6 +18,18 @@ public class Station {
         return "Station " + sID + ": " + "Passengers in this Station: " + spassengers + ", Cars in this Station: " + scars;
     }
 
+    public int getsID(){
+        return sID;
+    }
+
+    public ArrayList<Passenger> getspassengers(){
+        return spassengers;
+    }
+
+    public ArrayList<Car> getscars(){
+        return scars;
+    }
+
     //Passengers -- actual methods?
     public void dropoff(){
         for(int i = 0; i < scars.size(); i++){ //Loops through Cars in Station

@@ -29,7 +29,7 @@ public class Car {
 
     //Getters
     public String cToString(){
-        return "Car " + cID + ": " + "Start = " + cstart + ", " + "End = " + cend + ", " + "Passengers = " + cpassengers;
+        return "Car " + cID + ": " + "Start = " + cstart + ", " + "End = " + cend + ", " + "Passengers = " + cpassengers + ";";
     }
     public int getcID(){
         return cID;

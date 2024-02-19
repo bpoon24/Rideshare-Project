@@ -45,12 +45,20 @@ public class Road {
         return rcars;
     }
 
-    public String toString(){
-        for(int i = 1; i <= numstations; i++){
-            
+    public void printstationinfo(){
+        for(int i = 0; i < rstations.size(); i++){ //Loop through each station
+            String info = "";
+            info += "STATION " + rstations.get(i).getsID() + ":";
+            for(int k = 0; k < rstations.get(i).getscars().size(); k++){ //Loop through each car in each station
+                info += "CARS: " + rstations.get(i).getscars().get(k).cToString();
+            }
+            for(int j = 0; j < rstations.get(i).getspassengers().size(); j++){ //Loop through each passenger in each station
+                info += "PASSENGERS: " + rstations.get(i).getspassengers().get(j).pToString();
+            }
+            System.out.println(info);
+            System.out.println();
         }
     }
-
     //Helper methods for runner
     public int findmaxcardistance(ArrayList<Car> rcars){ //The max distance is the number of "moves" that need to be called
         int maxdistance = 0;
