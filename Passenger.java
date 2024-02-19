@@ -1,5 +1,5 @@
 public class Passenger {
-    private static int pIDGen = 0;
+    private static int pIDGen = 1;
     private int pID;
     private int pstart;
     private int pend;
@@ -20,7 +20,7 @@ public class Passenger {
     }
 
     public String pToString(){
-        return "Passenger " + pID + ": " + "Start = " + pstart + ", " + "End = " + pend;
+        return "Passenger " + pID + ": " + "Start = " + pstart + ", " + "End = " + pend + ", Pos = " + ppos;
     }
 
     public int getpID(){

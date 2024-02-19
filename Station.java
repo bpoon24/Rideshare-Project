@@ -1,20 +1,21 @@
 import java.util.*;
-
+//Eliminated ID generator style -- ID will be directly given by Road loop
 public class Station {
-    private static int sIDGen = 0;
+    //private static int sIDGen = 0;
     private int sID;
     private ArrayList<Passenger> spassengers;  
     private ArrayList<Car> scars;
 
-    public Station(){
-        sID = sIDGen;
-        sIDGen++;
+    public Station(int mysID){
+        sID = mysID;
+        //sID = sIDGen;
+        //sIDGen++;
         spassengers = new ArrayList<Passenger>();
         scars = new ArrayList<Car>();
     }
 
     public String sToString(){
-        return "Station " + sID;
+        return "Station " + sID + ": " + "Passengers in this Station: " + spassengers + ", Cars in this Station: " + scars;
     }
 
     //Passengers -- actual methods?

@@ -12,9 +12,8 @@ public class Road {
     }
 
     //Randomness generators
-
     public ArrayList<Station> stationgenerator(int numstations){ //Make numstations whatever you want
-        for(int i = 0; i < numstations; i++){ //Stations start at 0
+        for(int i = 1; i <= numstations; i++){ //Stations start at 1
             Station myStation = new Station(i); //Creates a Station with ID number corresponding to i
             rstations.add(myStation);
         }
@@ -23,8 +22,8 @@ public class Road {
 
     public ArrayList<Car> cargenerator(int numcars, int numstations){ //Make numcars whatever you want.  numstations must match the stationgenerator parameter.
         for(int i = 0; i < numcars; i++){
-            int randomcstart = (int) (Math.random() * (numstations)); //Generates a random integer from 0 to numstations - 1 (the index of the last Station)
-            int randomcend = (int) (Math.random() * (numstations));
+            int randomcstart = (int) (Math.random() * (numstations)) + 1; //Generates a random integer from 1 to numstations.
+            int randomcend = (int) (Math.random() * (numstations)) + 1;
             Car myCar = new Car(randomcstart, randomcend);
             rcars.add(myCar);
         }
@@ -33,16 +32,26 @@ public class Road {
 
     public ArrayList<Passenger> passengergenerator(int numpassengers, int numstations){ //Make numpassengers whatever you want.  numstations must match the stationgenerator parameter.
         for(int i = 0; i < numpassengers; i++){
-            int randompstart = (int) (Math.random() * (numstations)); 
-            int randompend = (int) (Math.random() * (numstations));
+            int randompstart = (int) (Math.random() * (numstations)) + 1; 
+            int randompend = (int) (Math.random() * (numstations)) + 1;
             Passenger myPassenger = new Passenger(randompstart, randompend);
             rpassengers.add(myPassenger);            
         }
         return rpassengers;
     }
 
-    //Helper methods for runner
+    //Misc
+    public ArrayList<Car> getrcars(){
+        return rcars;
+    }
 
+    public String toString(){
+        for(int i = 1; i <= numstations; i++){
+            
+        }
+    }
+
+    //Helper methods for runner
     public int findmaxcardistance(ArrayList<Car> rcars){ //The max distance is the number of "moves" that need to be called
         int maxdistance = 0;
         int distance = 0;
@@ -74,11 +83,14 @@ public class Road {
     }
 
     //The top level method!
+    /*
     public void runner(){
         for(int i = 0; i < findmaxcardistance(rcars); i++){
             moveallcars();
             dropoffallpassengers();
             pickupallpassengers();
+            System.out.println();
         }
     }
+    */
 }

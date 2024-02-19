@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Car {
-    private static int cIDGen = 0;
+    private static int cIDGen = 1;
     private int cID;
     private int cstart;
     private int cend;
@@ -29,7 +29,7 @@ public class Car {
 
     //Getters
     public String cToString(){
-        return "Car " + cID + ": " + "Start = " + cstart + ", " + "End = " + cend + ", " + "isForward = " + cisforward + ", " + "Passengers = " + cpassengers;
+        return "Car " + cID + ": " + "Start = " + cstart + ", " + "End = " + cend + ", " + "Passengers = " + cpassengers;
     }
     public int getcID(){
         return cID;
@@ -64,14 +64,15 @@ public class Car {
     }
 
     //Stuff about passengers
-    public void caddpassenger(Passenger mypassenger){//Don't need?
+    public void caddpassenger(Passenger mypassenger){
         cpassengers.add(mypassenger);
     }
 
-    public void cremovepassenger(Passenger mypassenger){//Don't need?
+    public void cremovepassenger(Passenger mypassenger){
         cpassengers.remove(mypassenger);
     }
 
+    /*
     public void pickup(Passenger mypassenger){
         if((cpassengers.size() < 3) && (mypassenger.getpisforward() == cisforward)){
             cpassengers.add(mypassenger);
@@ -83,6 +84,7 @@ public class Car {
             cpassengers.remove(mypassenger);
         }
     }
+     */
 
     public int getnumpas(){
         numpas = cpassengers.size();
