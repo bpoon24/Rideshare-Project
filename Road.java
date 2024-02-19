@@ -13,7 +13,7 @@ public class Road {
 
     //Randomness generators
     public ArrayList<Station> stationgenerator(int numstations){ //Make numstations whatever you want
-        for(int i = 1; i <= numstations; i++){ //Stations start at 1
+        for(int i = 0; i < numstations; i++){ //Stations start at 0 and end at numstations - 1.
             Station myStation = new Station(i); //Creates a Station with ID number corresponding to i
             rstations.add(myStation);
         }
@@ -22,8 +22,8 @@ public class Road {
 
     public ArrayList<Car> cargenerator(int numcars, int numstations){ //Make numcars whatever you want.  numstations must match the stationgenerator parameter.
         for(int i = 0; i < numcars; i++){
-            int randomcstart = (int) (Math.random() * (numstations)) + 1; //Generates a random integer from 1 to numstations.
-            int randomcend = (int) (Math.random() * (numstations)) + 1;
+            int randomcstart = (int) (Math.random() * (numstations)); //Generates a random integer from 1 to numstations.
+            int randomcend = (int) (Math.random() * (numstations));
             Car myCar = new Car(randomcstart, randomcend);
             rcars.add(myCar);
         }
@@ -32,8 +32,8 @@ public class Road {
 
     public ArrayList<Passenger> passengergenerator(int numpassengers, int numstations){ //Make numpassengers whatever you want.  numstations must match the stationgenerator parameter.
         for(int i = 0; i < numpassengers; i++){
-            int randompstart = (int) (Math.random() * (numstations)) + 1; 
-            int randompend = (int) (Math.random() * (numstations)) + 1;
+            int randompstart = (int) (Math.random() * (numstations)); 
+            int randompend = (int) (Math.random() * (numstations));
             Passenger myPassenger = new Passenger(randompstart, randompend);
             rpassengers.add(myPassenger);            
         }
@@ -55,7 +55,7 @@ public class Road {
 
     //Methods that send the randomly generated passengers and cars to "lower" classes
     public void sendCarsToStations(){
-        for(int i = 1; i <= rstations.size(); i++){ //Loops through all stations
+        for(int i = 0; i < rstations.size(); i++){ //Loops through all stations
             for(int j = 0; j < rcars.size(); j++){ //Loops through ALL Cars (not just the Cars in Station i)
                 if(rcars.get(j).getcstart() == i){ //Checks if Car j starts at Station i
                     rstations.get(i).getscars().add(rcars.get(j)); //Adds Car j to Station i's ArrayList of Cars
@@ -65,7 +65,7 @@ public class Road {
     }
 
     public void sendPassengersToStations(){
-        for(int i = 1; i <= rstations.size(); i++){ 
+        for(int i = 0; i < rstations.size(); i++){ 
             for(int j = 0; j < rpassengers.size(); j++){
                 if(rpassengers.get(j).getpstart() == i){
                     rstations.get(i).getspassengers().add(rpassengers.get(j));
@@ -78,12 +78,12 @@ public class Road {
     public void printstationinfo(){
         for(int i = 0; i < rstations.size(); i++){ //Loop through each station
             String info = "";
-            info += "STATION " + rstations.get(i).getsID() + ":";
+            info += "STATION #" + rstations.get(i).getsID() + ": ";
             for(int k = 0; k < rstations.get(i).getscars().size(); k++){ //Loop through each car in each station
-                info += "CARS: " + rstations.get(i).getscars().get(k).cToString();
+                info += rstations.get(i).getscars().get(k).cToString();
             }
             for(int j = 0; j < rstations.get(i).getspassengers().size(); j++){ //Loop through each passenger in each station
-                info += "PASSENGERS: " + rstations.get(i).getspassengers().get(j).pToString();
+                info += rstations.get(i).getspassengers().get(j).pToString();
             }
             System.out.println(info);
             System.out.println();
@@ -105,9 +105,14 @@ public class Road {
     public void moveallcars(){
         for(int i = 0; i < rcars.size(); i++){
             Car mycar = rcars.get(i);
+            int oldStationIndex = mycar.getcpos();
             mycar.move(); //The move() method is in Car
             int newStationIndex = mycar.getcpos();
-            rstations.get(newStationIndex).getscars().add(mycar);
+
+            if(newStationIndex != oldStationIndex){
+                rstations.get(newStationIndex).getscars().add(mycar);
+                rstations.get(oldStationIndex).getscars().remove(mycar);
+            }
         }
     }
 

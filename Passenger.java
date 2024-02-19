@@ -20,7 +20,7 @@ public class Passenger {
     }
 
     public String pToString(){
-        return "Passenger " + pID + ": " + "Start = " + pstart + ", End = " + pend + ";";
+        return "PASSENGER " + pID + "(" + "Start = " + pstart + ", End = " + pend + "); ";
     }
 
     public int getpID(){

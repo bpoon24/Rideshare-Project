@@ -33,16 +33,20 @@ public class Station {
     //Passengers -- actual methods?
     public void dropoff(){
         for(int i = 0; i < scars.size(); i++){ //Loops through Cars in Station
-            for(int j = scars.get(i).getnumpas(); j >= 0; j--){ //Loops through Passengers in Car.  Backwards b/c removing Passengers decreases the size of the list.
-                Car mycar = scars.get(i);
-                Passenger mypassenger = mycar.getpassenger(j);
-                if((mypassenger.getppos() == mypassenger.getpend()) || (mycar.getcpos() == mycar.getcend())){//Checks whether to drop off or not
-                    spassengers.add(mycar.getcpassengers().remove(j));
-                    mycar.decreasenumpas();
-                }
+            if(scars.get(i).getnumpas() > 0){
+                for(int j = scars.get(i).getnumpas() - 1; j >= 0; j--){ //Loops through Passengers in Car.  Backwards b/c removing Passengers decreases the size of the list.
+                    Car mycar = scars.get(i);
+                    Passenger mypassenger = mycar.getpassenger(j);
+                    if((mypassenger.getppos() == mypassenger.getpend()) || (mycar.getcpos() == mycar.getcend())){//Checks whether to drop off or not
+                        spassengers.add(mycar.getcpassengers().remove(j));
+                        mycar.decreasenumpas();
+                    }
 
-                if((mycar.getcpos() == mycar.getcend())){ //Terminates car if it's at final destination
-                    scars.remove(i);
+                    /*
+                    if((mycar.getcpos() == mycar.getcend())){ //Terminates car if it's at final destination
+                        scars.remove(i);
+                    }
+                     */
                 }
             }
         }
@@ -50,24 +54,26 @@ public class Station {
 
     public void pickup(){
         for(int i = 0; i < scars.size(); i++){  //Loops through Cars in Station
-            for(int j = spassengers.size(); j >= 0; j--){ //Loops through Passengers in Station.  Backwards b/c removing Passengers decreases the size of the list.
-                Car mycar = scars.get(i);
-                Passenger mypassenger = spassengers.get(j);
-                if((mycar.getcpassengers().size() < 3)){ //Checks car's capacity
-                    if(mypassenger.getpisforward() == mycar.getcisforward() == true){ //Checks for forward-moving passengers
-                        if(sID < mypassenger.getpend()){
-                            mycar.caddpassenger(mypassenger);
-                            spassengers.remove(mypassenger);
+            if(spassengers.size() > 0){
+                for(int j = spassengers.size() - 1; j >= 0; j--){ //Loops through Passengers in Station.  Backwards b/c removing Passengers decreases the size of the list.
+                    Car mycar = scars.get(i);
+                    Passenger mypassenger = spassengers.get(j);
+                    if((mycar.getnumpas() < 3 && mycar.getcpos() != mycar.getcend())){ //Checks car's capacity
+                        if(mypassenger.getpisforward() && mycar.getcisforward()){ //Checks for forward-moving passengers
+                            if(sID < mypassenger.getpend()){
+                                mycar.caddpassenger(mypassenger);
+                                spassengers.remove(mypassenger);
+                            }
                         }
-                    }
-                    if(mypassenger.getpisforward() == mycar.getcisforward() == false){ //Checks for backward-moving passengers
-                        if(sID > mypassenger.getpend()){
-                            mycar.caddpassenger(mypassenger);
-                            spassengers.remove(mypassenger);                           
+                        if(!mypassenger.getpisforward() && !mycar.getcisforward()){ //Checks for backward-moving passengers
+                            if(sID > mypassenger.getpend()){
+                                mycar.caddpassenger(mypassenger);
+                                spassengers.remove(mypassenger);                           
+                            }
                         }
                     }
                 }
-             }
+            }
         }
     }
 

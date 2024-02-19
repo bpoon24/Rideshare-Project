@@ -22,9 +22,9 @@ public class RoadTester {
 
         //Random generation
         System.out.println("Generating stations, cars, and passengers...");
-        myRoad.stationgenerator(5);
-        myRoad.cargenerator(5, 5);
-        myRoad.passengergenerator(5, 5);
+        myRoad.stationgenerator(3);
+        myRoad.cargenerator(3, 3);
+        myRoad.passengergenerator(3, 3);
 
         System.out.println(myRoad.getrstations());
         System.out.println(myRoad.getrcars());
@@ -40,13 +40,22 @@ public class RoadTester {
         ArrayList<Car> myrcars = myRoad.getrcars();
         int numsimulations = myRoad.findmaxcardistance(myrcars);
 
+
+        System.out.println();
         System.out.println("Running the simulation...");
 
-        //Loads Passengers into Cars for the first move
+        //Sends Objects to lower classes for first run
+        System.out.println();
+        System.out.println("Showing initial positions...");
+        myRoad.sendCarsToStations();
+        myRoad.sendPassengersToStations();
+
+        myRoad.printstationinfo();
+
         myRoad.pickupallpassengers();
 
         for(int i = 1; i <= numsimulations; i++){
-            System.out.println("Move " + i + " of " + numsimulations + ":");
+            System.out.println("Move " + i + " of " + numsimulations + "...");
 
             myRoad.moveallcars();
             myRoad.dropoffallpassengers();
@@ -66,5 +75,9 @@ public class RoadTester {
             System.out.println();
             */
         }   
+
+        System.out.println("Showing final positions...");
+        myRoad.dropoffallpassengers();
+        myRoad.printstationinfo();
     }
 }
