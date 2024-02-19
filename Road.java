@@ -4,11 +4,13 @@ public class Road {
     private ArrayList<Passenger> rpassengers;  
     private ArrayList<Car> rcars;
     private ArrayList<Station> rstations;
+    private ArrayList<Integer> totalrevenues;
 
     public Road(){
         rpassengers = new ArrayList<Passenger>();
         rcars = new ArrayList<Car>();  
         rstations = new ArrayList<Station>();  
+        totalrevenues = new ArrayList<Integer>();
     }
 
     //Randomness generators
@@ -109,9 +111,11 @@ public class Road {
             mycar.move(); //The move() method is in Car
             int newStationIndex = mycar.getcpos();
 
-            if(newStationIndex != oldStationIndex){
+            if(newStationIndex != oldStationIndex){ //Did the car's position change? If so, move it to a different station's ArrayList.
                 rstations.get(newStationIndex).getscars().add(mycar);
                 rstations.get(oldStationIndex).getscars().remove(mycar);
+
+                totalrevenues.set(i, totalrevenues.get(i) + mycar.getnumpas()); //Revenue per mile is $1 per passenger, or the number of passengers in dollars
             }
         }
     }
