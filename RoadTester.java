@@ -26,6 +26,9 @@ public class RoadTester {
         myRoad.cargenerator(5, 5);
         myRoad.passengergenerator(5, 5);
 
+        System.out.println(myRoad.getrstations());
+        System.out.println(myRoad.getrcars());
+        System.out.println(myRoad.getrpassengers());
 
         //Calling findmaxcardistance -- a little tricky
         /*
@@ -38,6 +41,10 @@ public class RoadTester {
         int numsimulations = myRoad.findmaxcardistance(myrcars);
 
         System.out.println("Running the simulation...");
+
+        //Loads Passengers into Cars for the first move
+        myRoad.pickupallpassengers();
+
         for(int i = 1; i <= numsimulations; i++){
             System.out.println("Move " + i + " of " + numsimulations + ":");
 

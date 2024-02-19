@@ -40,11 +40,41 @@ public class Road {
         return rpassengers;
     }
 
-    //Misc
+    //Getters
     public ArrayList<Car> getrcars(){
         return rcars;
     }
 
+    public ArrayList<Station> getrstations(){
+        return rstations;
+    }
+
+    public ArrayList<Passenger> getrpassengers(){
+        return rpassengers;
+    }
+
+    //Methods that send the randomly generated passengers and cars to "lower" classes
+    public void sendCarsToStations(){
+        for(int i = 1; i <= rstations.size(); i++){ //Loops through all stations
+            for(int j = 0; j < rcars.size(); j++){ //Loops through ALL Cars (not just the Cars in Station i)
+                if(rcars.get(j).getcstart() == i){ //Checks if Car j starts at Station i
+                    rstations.get(i).getscars().add(rcars.get(j)); //Adds Car j to Station i's ArrayList of Cars
+                }
+            }
+        }
+    }
+
+    public void sendPassengersToStations(){
+        for(int i = 1; i <= rstations.size(); i++){ 
+            for(int j = 0; j < rpassengers.size(); j++){
+                if(rpassengers.get(j).getpstart() == i){
+                    rstations.get(i).getspassengers().add(rpassengers.get(j));
+                }
+            }
+        }
+    }
+
+    //Big toString
     public void printstationinfo(){
         for(int i = 0; i < rstations.size(); i++){ //Loop through each station
             String info = "";
@@ -74,7 +104,10 @@ public class Road {
 
     public void moveallcars(){
         for(int i = 0; i < rcars.size(); i++){
-            rcars.get(i).move(); //The move() method is in Car
+            Car mycar = rcars.get(i);
+            mycar.move(); //The move() method is in Car
+            int newStationIndex = mycar.getcpos();
+            rstations.get(newStationIndex).getscars().add(mycar);
         }
     }
 

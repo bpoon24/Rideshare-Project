@@ -96,7 +96,7 @@ public class Car {
         return numpas;
     }
 
-    //Moves cars one station in right direction
+    //Moves cars one station in right direction -- this alone doesn't "move" the Car; it just changes the value of one of its fields
     public void move(){
         if(cpos != cend){
             if(cisforward){
