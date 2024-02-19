@@ -21,10 +21,11 @@ public class RoadTester {
         */
 
         //Random generation
+        System.out.println();
         System.out.println("Generating stations, cars, and passengers...");
-        myRoad.stationgenerator(3);
-        myRoad.cargenerator(3, 3);
-        myRoad.passengergenerator(3, 3);
+        myRoad.stationgenerator(10);
+        myRoad.cargenerator(8, 10);
+        myRoad.passengergenerator(12, 10);
 
         System.out.println(myRoad.getrstations());
         System.out.println(myRoad.getrcars());
@@ -63,7 +64,7 @@ public class RoadTester {
 
             myRoad.printstationinfo();
 
-            /*
+        /*
             System.out.println(s1.sToString());
             System.out.println(s2.sToString());
             System.out.println(s3.sToString());
@@ -73,11 +74,13 @@ public class RoadTester {
             System.out.println(c3.cToString());
 
             System.out.println();
-            */
         }   
 
         System.out.println("Showing final positions...");
         myRoad.dropoffallpassengers();
         myRoad.printstationinfo();
+        */
     }
+    }
+
 }
