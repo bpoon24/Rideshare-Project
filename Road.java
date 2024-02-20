@@ -149,15 +149,4 @@ public class Road {
         }
         return ((double) sumofrevenuepermile / rcars.size());
     }
-
-    /*
-    public void runner(){
-        for(int i = 0; i < findmaxcardistance(rcars); i++){
-            moveallcars();
-            dropoffallpassengers();
-            pickupallpassengers();
-            System.out.println();
-        }
-    }
-    */
 }
