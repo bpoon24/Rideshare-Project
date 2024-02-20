@@ -4,13 +4,13 @@ public class Road {
     private ArrayList<Passenger> rpassengers;  
     private ArrayList<Car> rcars;
     private ArrayList<Station> rstations;
-    private ArrayList<Integer> totalrevenues;
+    private ArrayList<Integer> revenues;
 
     public Road(){
         rpassengers = new ArrayList<Passenger>();
         rcars = new ArrayList<Car>();  
         rstations = new ArrayList<Station>();  
-        totalrevenues = new ArrayList<Integer>();
+        revenues = new ArrayList<Integer>();
     }
 
     //Randomness generators
@@ -30,6 +30,13 @@ public class Road {
             rcars.add(myCar);
         }
         return rcars;
+    }
+
+    public ArrayList<Integer> revenueinitializer(){ //Necessary to avoid Index Out of Bounds error when setting actual revenue values in move()
+        for(int i = 0; i < rcars.size(); i++){
+            revenues.add(0);
+        }
+        return revenues;
     }
 
     public ArrayList<Passenger> passengergenerator(int numpassengers, int numstations){ //Make numpassengers whatever you want.  numstations must match the stationgenerator parameter.
@@ -115,7 +122,8 @@ public class Road {
                 rstations.get(newStationIndex).getscars().add(mycar);
                 rstations.get(oldStationIndex).getscars().remove(mycar);
 
-                totalrevenues.set(i, totalrevenues.get(i) + mycar.getnumpas()); //Revenue per mile is $1 per passenger, or the number of passengers in dollars
+                revenues.set(i, revenues.get(i) + mycar.getnumpas()); //Revenue per mile is $1 per passenger, or the number of passengers in dollars
+                //This also ensures that the indices of revenues and rcars align
             }
         }
     }
@@ -132,7 +140,15 @@ public class Road {
         }        
     }
 
-    
+    public double calculateaveragerevenue(){ //(sum of (total revenue / number of miles) / number of cars)
+        double sumofrevenuepermile = 0;
+        for(int i = 0; i < revenues.size(); i++){
+            if(rcars.get(i).getdistance() != 0){
+                sumofrevenuepermile += ((double) revenues.get(i) / rcars.get(i).getdistance());
+            }
+        }
+        return ((double) sumofrevenuepermile / rcars.size());
+    }
 
     /*
     public void runner(){

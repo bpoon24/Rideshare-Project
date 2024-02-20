@@ -26,6 +26,7 @@ public class RoadTester {
         myRoad.stationgenerator(10);
         myRoad.cargenerator(8, 10);
         myRoad.passengergenerator(12, 10);
+        myRoad.revenueinitializer();
 
         System.out.println(myRoad.getrstations());
         System.out.println(myRoad.getrcars());
@@ -63,6 +64,10 @@ public class RoadTester {
             myRoad.pickupallpassengers();
 
             myRoad.printstationinfo();
+        }
+
+        System.out.println();
+        System.out.println("Average revenue: " + myRoad.calculateaveragerevenue());
 
         /*
             System.out.println(s1.sToString());
@@ -80,7 +85,6 @@ public class RoadTester {
         myRoad.dropoffallpassengers();
         myRoad.printstationinfo();
         */
-    }
     }
 
 }

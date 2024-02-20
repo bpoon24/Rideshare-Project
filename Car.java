@@ -52,7 +52,7 @@ public class Car {
         return cend;
     }
 
-    public int getdistance(){ //May not need this?
+    public int getdistance(){
         return Math.abs(cend - cstart);
     }
 
