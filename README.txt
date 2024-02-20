@@ -1,8 +1,9 @@
 I. DESCRIPTION
 This program simulates cars moving passengers between stations along a road.  
-
 In essence, I simulate "movement" by transferring values between various ArrayLists.
-
+The road class is hierarchically the highest, since it coordinates the stations.
+However, the station class does the heavy-lifting, orchestrating the picking-up and dropping-off.
+The car and passenger classes perform useful supporting functions but don't "see" the program at a high-level.
 
 II. SIMULATION RESULTS
 Scenario 1: 20 cars and 50 passengers
