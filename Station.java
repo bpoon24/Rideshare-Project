@@ -1,15 +1,12 @@
 import java.util.*;
-//Eliminated ID generator style -- ID will be directly given by Road loop
+
 public class Station {
-    //private static int sIDGen = 0;
     private int sID;
     private ArrayList<Passenger> spassengers;  
     private ArrayList<Car> scars;
 
     public Station(int mysID){
         sID = mysID;
-        //sID = sIDGen;
-        //sIDGen++;
         spassengers = new ArrayList<Passenger>();
         scars = new ArrayList<Car>();
     }
@@ -30,7 +27,7 @@ public class Station {
         return scars;
     }
 
-    //Passengers -- actual methods?
+    //Passengers -- actual methods
     public void dropoff(){
         for(int i = 0; i < scars.size(); i++){ //Loops through Cars in Station
             if(scars.get(i).getnumpas() > 0){
@@ -41,12 +38,6 @@ public class Station {
                         spassengers.add(mycar.getcpassengers().remove(j));
                         mycar.decreasenumpas();
                     }
-
-                    /*
-                    if((mycar.getcpos() == mycar.getcend())){ //Terminates car if it's at final destination
-                        scars.remove(i);
-                    }
-                     */
                 }
             }
         }

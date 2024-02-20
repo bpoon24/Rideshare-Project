@@ -81,20 +81,6 @@ public class Car {
         cpassengers.remove(mypassenger);
     }
 
-    /*
-    public void pickup(Passenger mypassenger){
-        if((cpassengers.size() < 3) && (mypassenger.getpisforward() == cisforward)){
-            cpassengers.add(mypassenger);
-        }
-    }
-
-    public void dropoff(Passenger mypassenger){
-        if((mypassenger.getppos() == mypassenger.getpend()) || (cpos == cend)) {
-            cpassengers.remove(mypassenger);
-        }
-    }
-     */
-
     public int getnumpas(){
         numpas = cpassengers.size();
         return numpas;
